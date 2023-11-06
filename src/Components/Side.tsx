@@ -1,5 +1,4 @@
 import './Side.css';
-import React from 'react';
 
 const Side = () => {
     return (
