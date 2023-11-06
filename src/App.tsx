@@ -11,11 +11,7 @@ import Section from './Components/Section';
 import ChartModel from "./Models/ChartModel";
 
 const labels: string[] = ["1", "2", "3", "4", "5", "6", "7"];
-const colors: string[] = [ getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor()];
-
-const borderStyle = css`
-  border: 0.5px solid #ddd;
-`;
+const colors: string[] = [getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor()];
 
 const ContainerStyle = styled.div`
   position: relative;
@@ -26,9 +22,9 @@ const ContainerStyle = styled.div`
     "section-side section-side section-main section-main" minmax(auto,50px)
     "side side main main" 1fr
     / 1fr 1fr 2fr 3fr;
-    gap: 1px;
-    height: 100vh;
-    width: 100vw;
+  gap: 3px;
+  height: 100vh;
+  width: 100vw;
   font-family: "HackGen Console NF Regular";
   padding: 1%;
 `
@@ -107,13 +103,13 @@ const MainStyle = styled.div`
 
 const App = (): JSX.Element => {
 
-  let initial_data : ChartModel[] = [
-    {id: 1, labels: labels, data: getRandomData(labels), color: colors[0]},
-    {id: 2, labels: labels, data: getRandomData(labels), color: colors[1]},
-    {id: 3, labels: labels, data: getRandomData(labels), color: colors[2]},
-    {id: 4, labels: labels, data: getRandomData(labels), color: colors[3]},
-    {id: 5, labels: labels, data: getRandomData(labels), color: colors[4]},
-    {id: 6, labels: labels, data: getRandomData(labels), color: colors[5]},
+  let initial_data: ChartModel[] = [
+    { id: 1, labels: labels, data: getRandomData(labels), color: colors[0] },
+    { id: 2, labels: labels, data: getRandomData(labels), color: colors[1] },
+    { id: 3, labels: labels, data: getRandomData(labels), color: colors[2] },
+    { id: 4, labels: labels, data: getRandomData(labels), color: colors[3] },
+    { id: 5, labels: labels, data: getRandomData(labels), color: colors[4] },
+    { id: 6, labels: labels, data: getRandomData(labels), color: colors[5] },
   ];
   const [data, setData] = useState(initial_data);
 
@@ -123,13 +119,13 @@ const App = (): JSX.Element => {
       <TitleStyle><Title /></TitleStyle>
       <Logo1Style><Logo /></Logo1Style>
       <Logo2Style><button type="button" onClick={() => {
-        let random_data :ChartModel[] = [
-          {id: 1, labels: labels, data: getRandomData(labels), color: colors[0]},
-          {id: 2, labels: labels, data: getRandomData(labels), color: colors[1]},
-          {id: 3, labels: labels, data: getRandomData(labels), color: colors[2]},
-          {id: 4, labels: labels, data: getRandomData(labels), color: colors[3]},
-          {id: 5, labels: labels, data: getRandomData(labels), color: colors[4]},
-          {id: 6, labels: labels, data: getRandomData(labels), color: colors[5]},
+        let random_data: ChartModel[] = [
+          { id: 1, labels: labels, data: getRandomData(labels), color: colors[0] },
+          { id: 2, labels: labels, data: getRandomData(labels), color: colors[1] },
+          { id: 3, labels: labels, data: getRandomData(labels), color: colors[2] },
+          { id: 4, labels: labels, data: getRandomData(labels), color: colors[3] },
+          { id: 5, labels: labels, data: getRandomData(labels), color: colors[4] },
+          { id: 6, labels: labels, data: getRandomData(labels), color: colors[5] },
         ];
         setData(random_data);
       }}
@@ -144,15 +140,15 @@ const App = (): JSX.Element => {
   );
 };
 
-function getRandomData(labels:string[]) : number[] {
-  let data : number[] = [];
+function getRandomData(labels: string[]): number[] {
+  let data: number[] = [];
   for (let i = 0; i < labels.length; i++) {
     data.push(Math.floor(Math.random() * 100));
   }
   return data;
 }
 
-function getRandomRgbaColor() :string {
+function getRandomRgbaColor(): string {
   // RGBAの各値をランダムに生成
   const r = Math.floor(Math.random() * 256); // 赤色の強さは0-255
   const g = Math.floor(Math.random() * 256); // 緑色の強さは0-255

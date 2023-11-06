@@ -1,10 +1,15 @@
-import logo from '../logo.svg';
+import styled from "@emotion/styled";
+import logo from '../logo.svg'
 
+const LogoStyle = styled.image`
+    height: 10vmin;
+    pointer-events: none;
+`
 const Logo = () => {
     return (
-        <div>
-            <img src={logo} className="App-logo" alt="logo" />
-        </div>
+        <LogoStyle>
+            <img src={logo} alt="logo" />
+        </LogoStyle>
     );
 };
 
