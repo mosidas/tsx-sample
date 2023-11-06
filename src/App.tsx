@@ -1,4 +1,3 @@
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useState } from 'react';
 import Side from './Components/Side';
@@ -17,16 +16,16 @@ const ContainerStyle = styled.div`
   position: relative;
   display: grid;
   grid-template:
-    "title title table1 chart" minmax(auto,50px)
+    "title title table1 chart" minmax(auto,40px)
     "logo1 logo2 table1 chart" minmax(auto,100px)
-    "section-side section-side section-main section-main" minmax(auto,50px)
+    "section-side section-side section-main section-main" minmax(auto,40px)
     "side side main main" 1fr
-    / 1fr 1fr 2fr 3fr;
+    / minmax(140px,1fr) minmax(140px,1fr) 2fr 3fr;
   gap: 3px;
   height: 100vh;
   width: 100vw;
   font-family: "HackGen Console NF Regular";
-  padding: 1%;
+  padding: 2%;
 `
 
 const TitleStyle = styled.div`
@@ -80,9 +79,7 @@ const SectionSideStyle = styled.div`
 const SideStyle = styled.div`
   grid-area: side;
   border: 1px solid #e0e0e0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow-y: auto;
 `
 
 const SectionMainStyle = styled.div`
@@ -96,9 +93,7 @@ const SectionMainStyle = styled.div`
 const MainStyle = styled.div`
   grid-area: main;
   border: 1px solid #e0e0e0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow-y: auto;
 `
 
 const App = (): JSX.Element => {
@@ -112,6 +107,7 @@ const App = (): JSX.Element => {
     { id: 6, labels: labels, data: getRandomData(labels), color: colors[5] },
   ];
   const [data, setData] = useState(initial_data);
+  const [graphKey, setGraphKey] = useState(0);
 
 
   return (
@@ -128,10 +124,11 @@ const App = (): JSX.Element => {
           { id: 6, labels: labels, data: getRandomData(labels), color: colors[5] },
         ];
         setData(random_data);
+        setGraphKey(prevKey => Number.MAX_SAFE_INTEGER ? 0 : prevKey + 1);
       }}
       >ランダム</button></Logo2Style>
       <TableStyle><Table /></TableStyle>
-      <ChartStyle><Chart data={data} /></ChartStyle>
+      <ChartStyle><Chart key={graphKey} data={data} /></ChartStyle>
       <SectionSideStyle><Section text="This is side" /></SectionSideStyle>
       <SideStyle><Side /></SideStyle>
       <SectionMainStyle><Section text="This is main" /></SectionMainStyle>

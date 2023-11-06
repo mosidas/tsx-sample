@@ -24,7 +24,7 @@ ChartJS.register(
     ...registerables
 );
 
-const Chart = (props: { data: ChartModel[] }) => {
+const Chart = (props: { key: number, data: ChartModel[] }) => {
     const options: ChartOptions<'bar'> =
     {
         color: "rgba(255,255,255,0.7)",
@@ -89,7 +89,7 @@ const Chart = (props: { data: ChartModel[] }) => {
 
     const arbitraryStackKey = "stack1";
     const ret = {
-        labels : props.data[0].labels,
+        labels: props.data[0].labels,
         datasets: props.data.map((item, index) => {
             return {
                 label: "label" + index,
@@ -102,7 +102,7 @@ const Chart = (props: { data: ChartModel[] }) => {
 
     return (
         <div style={divStyle}>
-            <Bar options={options} data={ret} />
+            <Bar key={props.key} options={options} data={ret} />
         </div>
     )
 }
