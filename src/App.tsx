@@ -1,4 +1,5 @@
-import './App.css';
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 import { useState } from 'react';
 import Side from './Components/Side';
 import Main from './Components/Main';
@@ -12,6 +13,97 @@ import ChartModel from "./Models/ChartModel";
 const labels: string[] = ["1", "2", "3", "4", "5", "6", "7"];
 const colors: string[] = [ getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor()];
 
+const borderStyle = css`
+  border: 0.5px solid #ddd;
+`;
+
+const ContainerStyle = styled.div`
+  position: relative;
+  display: grid;
+  grid-template:
+    "title title table1 chart" minmax(auto,50px)
+    "logo1 logo2 table1 chart" minmax(auto,100px)
+    "section-side section-side section-main section-main" minmax(auto,50px)
+    "side side main main" 1fr
+    / 1fr 1fr 2fr 3fr;
+    gap: 1px;
+    height: 100vh;
+    width: 100vw;
+  font-family: "HackGen Console NF Regular";
+  padding: 1%;
+`
+
+const TitleStyle = styled.div`
+  grid-area: title;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const Logo1Style = styled.div`
+  grid-area: logo1;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const Logo2Style = styled.div`
+  grid-area: logo2;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const TableStyle = styled.div`
+  grid-area: table1;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const ChartStyle = styled.div`
+  grid-area: chart;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const SectionSideStyle = styled.div`
+  grid-area: section-side;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const SideStyle = styled.div`
+  grid-area: side;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const SectionMainStyle = styled.div`
+  grid-area: section-main;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const MainStyle = styled.div`
+  grid-area: main;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
 
 const App = (): JSX.Element => {
 
@@ -27,10 +119,10 @@ const App = (): JSX.Element => {
 
 
   return (
-    <div className="container">
-      <div className="title"><Title /></div>
-      <div className="logo1"><Logo /></div>
-      <div className="logo2"><button type="button" onClick={() => {
+    <ContainerStyle>
+      <TitleStyle><Title /></TitleStyle>
+      <Logo1Style><Logo /></Logo1Style>
+      <Logo2Style><button type="button" onClick={() => {
         let random_data :ChartModel[] = [
           {id: 1, labels: labels, data: getRandomData(labels), color: colors[0]},
           {id: 2, labels: labels, data: getRandomData(labels), color: colors[1]},
@@ -41,14 +133,14 @@ const App = (): JSX.Element => {
         ];
         setData(random_data);
       }}
-      >ランダム</button></div>
-      <div className="table"><Table /></div>
-      <div className="chart"><Chart data={data} /></div>
-      <div className="section-side"><Section text="This is side" /></div>
-      <div className="side"><Side /></div>
-      <div className="section-main"><Section text="This is main" /></div>
-      <div className="main"><Main /></div>
-    </div>
+      >ランダム</button></Logo2Style>
+      <TableStyle><Table /></TableStyle>
+      <ChartStyle><Chart data={data} /></ChartStyle>
+      <SectionSideStyle><Section text="This is side" /></SectionSideStyle>
+      <SideStyle><Side /></SideStyle>
+      <SectionMainStyle><Section text="This is main" /></SectionMainStyle>
+      <MainStyle><Main /></MainStyle>
+    </ContainerStyle>
   );
 };
 
