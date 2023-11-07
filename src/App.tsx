@@ -113,6 +113,8 @@ const main = css`
   overflow-y: auto;
 `
 
+
+
 const App = (): JSX.Element => {
 
   let initial_data: ChartModel[] = [
@@ -126,23 +128,24 @@ const App = (): JSX.Element => {
   const [data, setData] = useState(initial_data);
   const [graphKey, setGraphKey] = useState(0);
 
+  const onClickRandom = (event: React.MouseEvent<HTMLButtonElement>) => {
+    let random_data: ChartModel[] = [
+      { id: 1, labels: labels, data: getRandomData(labels), color: colors[0] },
+      { id: 2, labels: labels, data: getRandomData(labels), color: colors[1] },
+      { id: 3, labels: labels, data: getRandomData(labels), color: colors[2] },
+      { id: 4, labels: labels, data: getRandomData(labels), color: colors[3] },
+      { id: 5, labels: labels, data: getRandomData(labels), color: colors[4] },
+      { id: 6, labels: labels, data: getRandomData(labels), color: colors[5] },
+    ];
+    setData(random_data);
+    setGraphKey(prevKey => Number.MAX_SAFE_INTEGER ? 0 : prevKey + 1);
+  };
+
   return (
     <div css={container}>
       <div css={title}><Title /></div>
       <div css={logo1}><Logo /></div>
-      <div css={logo2}><button  type="button" onClick={() => {
-        let random_data: ChartModel[] = [
-          { id: 1, labels: labels, data: getRandomData(labels), color: colors[0] },
-          { id: 2, labels: labels, data: getRandomData(labels), color: colors[1] },
-          { id: 3, labels: labels, data: getRandomData(labels), color: colors[2] },
-          { id: 4, labels: labels, data: getRandomData(labels), color: colors[3] },
-          { id: 5, labels: labels, data: getRandomData(labels), color: colors[4] },
-          { id: 6, labels: labels, data: getRandomData(labels), color: colors[5] },
-        ];
-        setData(random_data);
-        setGraphKey(prevKey => Number.MAX_SAFE_INTEGER ? 0 : prevKey + 1);
-      }}
-      >ランダム</button></div>
+      <div css={logo2}><button type="button" onClick={onClickRandom}>ランダム</button></div>
       <div css={table}><Table /></div>
       <div css={chart}><Chart key={graphKey} data={data} /></div>
       <div css={sectionSide}><Section text="This is side" /></div>
