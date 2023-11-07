@@ -1,4 +1,5 @@
-import styled from "@emotion/styled";
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 import { useState } from 'react';
 import Side from './Components/Side';
 import Main from './Components/Main';
@@ -12,31 +13,47 @@ import ChartModel from "./Models/ChartModel";
 const labels: string[] = ["1", "2", "3", "4", "5", "6", "7"];
 const colors: string[] = [getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor()];
 
-const ContainerStyle = styled.div`
-  position: relative;
-  display: grid;
-  grid-template:
-    "title title table1 chart" minmax(auto,40px)
+const container = css({
+  position: "relative",
+  display: "grid",
+  gridTemplate:
+    `"title title table1 chart" minmax(auto,40px)
     "logo1 logo2 table1 chart" minmax(auto,100px)
     "section-side section-side section-main section-main" minmax(auto,40px)
     "side side main main" 1fr
-    / minmax(140px,1fr) minmax(140px,1fr) 2fr 3fr;
-  gap: 3px;
-  height: 100vh;
-  width: 100vw;
-  font-family: "HackGen Console NF Regular";
-  padding: 2%;
-`
+    / minmax(140px,1fr) minmax(140px,1fr) 2fr 3fr`,
+  gap: "3px",
+  height: "100vh",
+  width: "100vw",
+  fontFamily: "HackGen Console NF Regular",
+  padding: "2%",
+});
 
-const TitleStyle = styled.div`
+// const container = css`
+// position: relative;
+// display: grid;
+// grid-template:
+//   "title title table1 chart" minmax(auto, 40px)
+//   "logo1 logo2 table1 chart" minmax(auto, 100px)
+//   "section-side section-side section-main section-main" minmax(auto, 40px)
+//   "side side main main" 1fr
+//   / minmax(140px, 1fr) minmax(140px, 1fr) 2fr 3fr;
+// gap: 3px;
+// height: 100vh;
+// width: 100vw;
+// font-family: "HackGen Console NF Regular";
+// padding: 2%;
+// `;
+
+const title = css`
   grid-area: title;
   border: 1px solid #e0e0e0;
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
-const Logo1Style = styled.div`
+const logo1 = css`
   grid-area: logo1;
   border: 1px solid #e0e0e0;
   display: flex;
@@ -44,7 +61,7 @@ const Logo1Style = styled.div`
   justify-content: center;
 `
 
-const Logo2Style = styled.div`
+const logo2 = css`
   grid-area: logo2;
   border: 1px solid #e0e0e0;
   display: flex;
@@ -52,7 +69,7 @@ const Logo2Style = styled.div`
   justify-content: center;
 `
 
-const TableStyle = styled.div`
+const table = css`
   grid-area: table1;
   border: 1px solid #e0e0e0;
   display: flex;
@@ -60,7 +77,7 @@ const TableStyle = styled.div`
   justify-content: center;
 `
 
-const ChartStyle = styled.div`
+const chart = css`
   grid-area: chart;
   border: 1px solid #e0e0e0;
   display: flex;
@@ -68,7 +85,7 @@ const ChartStyle = styled.div`
   justify-content: center;
 `
 
-const SectionSideStyle = styled.div`
+const sectionSide = css`
   grid-area: section-side;
   border: 1px solid #e0e0e0;
   display: flex;
@@ -76,13 +93,13 @@ const SectionSideStyle = styled.div`
   justify-content: center;
 `
 
-const SideStyle = styled.div`
+const side = css`
   grid-area: side;
   border: 1px solid #e0e0e0;
   overflow-y: auto;
 `
 
-const SectionMainStyle = styled.div`
+const sectionMain = css`
   grid-area: section-main;
   border: 1px solid #e0e0e0;
   display: flex;
@@ -90,7 +107,7 @@ const SectionMainStyle = styled.div`
   justify-content: center;
 `
 
-const MainStyle = styled.div`
+const main = css`
   grid-area: main;
   border: 1px solid #e0e0e0;
   overflow-y: auto;
@@ -109,12 +126,11 @@ const App = (): JSX.Element => {
   const [data, setData] = useState(initial_data);
   const [graphKey, setGraphKey] = useState(0);
 
-
   return (
-    <ContainerStyle>
-      <TitleStyle><Title /></TitleStyle>
-      <Logo1Style><Logo /></Logo1Style>
-      <Logo2Style><button type="button" onClick={() => {
+    <div css={container}>
+      <div css={title}><Title /></div>
+      <div css={logo1}><Logo /></div>
+      <div css={logo2}><button  type="button" onClick={() => {
         let random_data: ChartModel[] = [
           { id: 1, labels: labels, data: getRandomData(labels), color: colors[0] },
           { id: 2, labels: labels, data: getRandomData(labels), color: colors[1] },
@@ -126,14 +142,14 @@ const App = (): JSX.Element => {
         setData(random_data);
         setGraphKey(prevKey => Number.MAX_SAFE_INTEGER ? 0 : prevKey + 1);
       }}
-      >ランダム</button></Logo2Style>
-      <TableStyle><Table /></TableStyle>
-      <ChartStyle><Chart key={graphKey} data={data} /></ChartStyle>
-      <SectionSideStyle><Section text="This is side" /></SectionSideStyle>
-      <SideStyle><Side /></SideStyle>
-      <SectionMainStyle><Section text="This is main" /></SectionMainStyle>
-      <MainStyle><Main /></MainStyle>
-    </ContainerStyle>
+      >ランダム</button></div>
+      <div css={table}><Table /></div>
+      <div css={chart}><Chart key={graphKey} data={data} /></div>
+      <div css={sectionSide}><Section text="This is side" /></div>
+      <div css={side}><Side /></div>
+      <div css={sectionMain}><Section text="This is main" /></div>
+      <div css={main}><Main /></div>
+    </div>
   );
 };
 
