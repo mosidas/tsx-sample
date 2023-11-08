@@ -1,49 +1,41 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { useState } from 'react';
-import Side from './Components/Side';
-import Main from './Components/Main';
-import Table from './Components/Table';
-import Chart from './Components/Chart';
-import Title from './Components/Title';
-import Logo from './Components/Logo';
-import Section from './Components/Section';
+import { useState } from "react";
+import Side from "./Components/Side";
+import Main from "./Components/Main";
+import Table from "./Components/Table";
+import Chart from "./Components/Chart";
+import Title from "./Components/Title";
+import Logo from "./Components/Logo";
+import Section from "./Components/Section";
 import ChartModel from "./Models/ChartModel";
 
 const labels: string[] = ["1", "2", "3", "4", "5", "6", "7"];
-const colors: string[] = [getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor(), getRandomRgbaColor()];
+const colors: string[] = [
+  getRandomRgbaColor(),
+  getRandomRgbaColor(),
+  getRandomRgbaColor(),
+  getRandomRgbaColor(),
+  getRandomRgbaColor(),
+  getRandomRgbaColor(),
+  getRandomRgbaColor(),
+];
 
-const container = css({
-  position: "relative",
-  display: "grid",
-  gridTemplate:
-    `"title title table1 chart" minmax(auto,40px)
-    "logo1 logo2 table1 chart" minmax(auto,100px)
-    "section-side section-side section-main section-main" minmax(auto,40px)
+const container = css`
+  position: relative;
+  display: grid;
+  grid-template:
+    "title title table1 chart" minmax(auto, 40px)
+    "logo1 logo2 table1 chart" minmax(auto, 100px)
+    "section-side section-side section-main section-main" minmax(auto, 40px)
     "side side main main" 1fr
-    / minmax(140px,1fr) minmax(140px,1fr) 2fr 3fr`,
-  gap: "3px",
-  height: "100vh",
-  width: "100vw",
-  fontFamily: "HackGen Console NF Regular",
-  padding: "2%",
-});
-
-// const container = css`
-// position: relative;
-// display: grid;
-// grid-template:
-//   "title title table1 chart" minmax(auto, 40px)
-//   "logo1 logo2 table1 chart" minmax(auto, 100px)
-//   "section-side section-side section-main section-main" minmax(auto, 40px)
-//   "side side main main" 1fr
-//   / minmax(140px, 1fr) minmax(140px, 1fr) 2fr 3fr;
-// gap: 3px;
-// height: 100vh;
-// width: 100vw;
-// font-family: "HackGen Console NF Regular";
-// padding: 2%;
-// `;
+    / minmax(140px, 1fr) minmax(140px, 1fr) 2fr 3fr;
+  gap: 3px;
+  height: 100vh;
+  width: 100vw;
+  font-family: "HackGen Console NF Regular";
+  padding: 2%;
+`;
 
 const title = css`
   grid-area: title;
@@ -59,7 +51,7 @@ const logo1 = css`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
 const logo2 = css`
   grid-area: logo2;
@@ -67,7 +59,7 @@ const logo2 = css`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
 const table = css`
   grid-area: table1;
@@ -75,7 +67,7 @@ const table = css`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
 const chart = css`
   grid-area: chart;
@@ -83,7 +75,7 @@ const chart = css`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
 const sectionSide = css`
   grid-area: section-side;
@@ -91,13 +83,13 @@ const sectionSide = css`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
 const side = css`
   grid-area: side;
   border: 1px solid #e0e0e0;
   overflow-y: auto;
-`
+`;
 
 const sectionMain = css`
   grid-area: section-main;
@@ -105,18 +97,14 @@ const sectionMain = css`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
 const main = css`
   grid-area: main;
   border: 1px solid #e0e0e0;
   overflow-y: auto;
-`
-
-
-
+`;
 const App = (): JSX.Element => {
-
   let initial_data: ChartModel[] = [
     { id: 1, labels: labels, data: getRandomData(labels), color: colors[0] },
     { id: 2, labels: labels, data: getRandomData(labels), color: colors[1] },
@@ -138,20 +126,40 @@ const App = (): JSX.Element => {
       { id: 6, labels: labels, data: getRandomData(labels), color: colors[5] },
     ];
     setData(random_data);
-    setGraphKey(prevKey => Number.MAX_SAFE_INTEGER ? 0 : prevKey + 1);
+    setGraphKey((prevKey) => (Number.MAX_SAFE_INTEGER ? 0 : prevKey + 1));
   };
 
   return (
     <div css={container}>
-      <div css={title}><Title /></div>
-      <div css={logo1}><Logo /></div>
-      <div css={logo2}><button type="button" onClick={onClickRandom}>ランダム</button></div>
-      <div css={table}><Table /></div>
-      <div css={chart}><Chart key={graphKey} data={data} /></div>
-      <div css={sectionSide}><Section text="This is side" /></div>
-      <div css={side}><Side /></div>
-      <div css={sectionMain}><Section text="This is main" /></div>
-      <div css={main}><Main /></div>
+      <div css={title}>
+        <Title />
+      </div>
+      <div css={logo1}>
+        <Logo />
+      </div>
+      <div css={logo2}>
+        <button type="button" onClick={onClickRandom}>
+          ランダム
+        </button>
+      </div>
+      <div css={table}>
+        <Table />
+      </div>
+      <div css={chart}>
+        <Chart key={graphKey} data={data} />
+      </div>
+      <div css={sectionSide}>
+        <Section text="This is side" />
+      </div>
+      <div css={side}>
+        <Side />
+      </div>
+      <div css={sectionMain}>
+        <Section text="This is main" />
+      </div>
+      <div css={main}>
+        <Main />
+      </div>
     </div>
   );
 };
