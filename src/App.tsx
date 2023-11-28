@@ -105,7 +105,7 @@ const main = css`
   overflow-y: auto;
 `;
 const App = (): JSX.Element => {
-  let initial_data: ChartModel[] = [
+  const initial_data: ChartModel[] = [
     { id: 1, labels: labels, data: getRandomData(labels), color: colors[0] },
     { id: 2, labels: labels, data: getRandomData(labels), color: colors[1] },
     { id: 3, labels: labels, data: getRandomData(labels), color: colors[2] },
@@ -116,8 +116,8 @@ const App = (): JSX.Element => {
   const [data, setData] = useState(initial_data);
   const [graphKey, setGraphKey] = useState(0);
 
-  const onClickRandom = (event: React.MouseEvent<HTMLButtonElement>) => {
-    let random_data: ChartModel[] = [
+  const onClickRandom = () => {
+    const random_data: ChartModel[] = [
       { id: 1, labels: labels, data: getRandomData(labels), color: colors[0] },
       { id: 2, labels: labels, data: getRandomData(labels), color: colors[1] },
       { id: 3, labels: labels, data: getRandomData(labels), color: colors[2] },
@@ -165,7 +165,7 @@ const App = (): JSX.Element => {
 };
 
 function getRandomData(labels: string[]): number[] {
-  let data: number[] = [];
+  const data: number[] = [];
   for (let i = 0; i < labels.length; i++) {
     data.push(Math.floor(Math.random() * 100));
   }

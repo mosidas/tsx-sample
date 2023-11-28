@@ -27,7 +27,7 @@ ChartJS.register(
 const Chart = (props: { key: number; data: ChartModel[] }) => {
   const options: ChartOptions<"bar"> = {
     color: "rgba(255,255,255,0.7)",
-    backgroundColor: "rgba(255,255,255,0.7)",
+    backgroundColor: "rgba(64, 47, 47, 0.7)",
     animation: {
       duration: 2500,
       easing: "easeOutElastic",
