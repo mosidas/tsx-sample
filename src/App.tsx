@@ -166,7 +166,7 @@ const App = (): JSX.Element => {
 
 function getRandomData(labels: string[]): number[] {
   const data: number[] = [];
-  for (let i = 0; i < labels.length; i++) {
+  for (const _ of labels) {
     data.push(Math.floor(Math.random() * 100));
   }
   return data;
